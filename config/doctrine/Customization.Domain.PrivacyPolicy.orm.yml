@@ -1,0 +1,20 @@
+App\Customization\Domain\PrivacyPolicy:
+  type: entity
+  table: privacy_policy
+#todo store Policies in one table
+#  table: policy
+  id:
+    id:
+      type: uuid
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    url:
+      type:
+        string
+  manyToOne:
+    language:
+      targetEntity: App\Shared\Domain\Language

@@ -1,0 +1,21 @@
+App\Identity\Domain\Role\Role:
+  type: entity
+  table: role
+  id:
+    id:
+      type: role_id
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    name:
+      type: string
+      unique: true
+  manyToMany:
+    permissions:
+      targetEntity: App\Identity\Domain\Permission\Permission
+      joinTable:
+        name: role_permission
+      cascade: ["all"]

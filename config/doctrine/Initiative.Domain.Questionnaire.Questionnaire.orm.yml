@@ -1,0 +1,27 @@
+App\Initiative\Domain\Questionnaire\Questionnaire:
+  type: entity
+  table: questionnaire
+  id:
+    id:
+      type: uuid
+      unique: true
+  fields:
+    type:
+      type: string
+    question:
+      type: text
+  manyToOne:
+    initiative:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+#      inversedBy: questionnaires
+  oneToMany:
+    options:
+      targetEntity: App\Initiative\Domain\Questionnaire\Option
+      mappedBy: questionnaire
+      cascade: ['all']
+      orphanRemoval: true
+    answers:
+      targetEntity: App\Initiative\Domain\Questionnaire\Answer
+      mappedBy: questionnaire
+      cascade: ['all']
+      orphanRemoval: true

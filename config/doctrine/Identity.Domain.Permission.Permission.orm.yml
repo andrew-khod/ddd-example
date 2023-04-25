@@ -1,0 +1,15 @@
+App\Identity\Domain\Permission\Permission:
+  type: entity
+  table: permission
+  id:
+    id:
+      type: permission_id
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    name:
+      type: string
+      unique: true

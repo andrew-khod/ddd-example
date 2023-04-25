@@ -1,0 +1,28 @@
+App\Identity\Domain\Customer\Following:
+  type: entity
+  table: following
+  id:
+    customer:
+      associationKey: true
+    initiative:
+      associationKey: true
+#    id:
+#      type: uuid
+#      unique: true
+#  #      generator:
+#  #        strategy: CUSTOM
+#  #      customIdGenerator:
+#  #        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    created:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+  manyToOne:
+    customer:
+      targetEntity: App\Identity\Domain\Customer\AbstractCustomer
+      inversedBy: following
+    initiative:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+      inversedBy: followers

@@ -1,0 +1,21 @@
+<h3>{% trans into language %}Following changes have been made{% endtrans %}:</h3>
+
+{% for change in changes %}
+    {% if change.property == 'location' %}
+        {% if change.new is null %}
+            <p><b>{% trans into language %}Location{% endtrans %}:</b> {{ change.old.name }} <b>-></b> {% trans into language %}empty{% endtrans %}</p>
+        {% else %}
+            <p><b>{% trans into language %}Location{% endtrans %}:</b> {{ change.old ? change.old.name : ('empty')|trans({},null,language) }} <b>-></b> {{ change.new.name }}</p>
+            <p><b>{% trans into language %}Location coordinates{% endtrans %}:</b> {{ change.old ? change.old : ('empty')|trans({},null,language) }} <b>-></b> {{ change.new }}</p>
+            <p><b>{% trans into language %}Location radius{% endtrans %}:</b> {{ change.old and change.old.radiusValue ? change.old.radiusValue ~ ' ' ~ change.old.radiusUnit : ('empty')|trans({},null,language) }} <b>-></b> {{ change.new.radiusValue }} {{ change.old.radiusUnit }}</p>
+        {% endif %}
+    {% else  %}
+        <p><b>{{ change.property|trans({},null,language) }}:</b> {{ change.old }} <b>-></b> {{ change.new }}</p>
+    {% endif %}
+{% endfor %}
+
+<p>
+    <a href="{{ url }}/initiative/{{ id }}" target="_blank">{{ url }}/initiative/{{ id }}</a>
+</p>
+
+<p>{% trans into language %}Best regards{% endtrans %}</p>

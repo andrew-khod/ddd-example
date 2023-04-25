@@ -1,0 +1,5 @@
+parameters:
+  identity.google_client_id: '%env(IDENTITY_GOOGLE_CLIENT_ID)%'
+  identity.google_client_secret: '%env(IDENTITY_GOOGLE_CLIENT_SECRET)%'
+  identity.google_client_redirect_uri: '%env(IDENTITY_GOOGLE_CLIENT_REDIRECT)%'
+  identity.customer.photo: '%env(CUSTOMER_PHOTO_PATH)%'

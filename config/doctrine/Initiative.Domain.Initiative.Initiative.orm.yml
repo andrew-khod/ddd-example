@@ -1,0 +1,135 @@
+App\Initiative\Domain\Initiative\Initiative:
+  type: entity
+  table: initiative
+  id:
+    id:
+      type: initiative_id
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    type:
+      type: string
+    title:
+      type: string
+    description:
+      type: text
+    minimal_joined_people:
+      type: integer
+      nullable: true
+    location:
+      type: spatial_point
+      nullable: true
+    location_name:
+      type: text
+      nullable: true
+    location_radius_value:
+      type: decimal
+      precision: 10
+      scale: 2
+      nullable: true
+    location_radius_unit:
+      type: string
+      nullable: true
+#    date_period:
+#      type: dateinterval
+    date_start:
+      type: datetime
+    date_end:
+      type: datetime
+    # TODO make status separate table
+#    status:
+#      type: string
+    # todo use soft-deleteable
+    is_archived:
+      type: boolean
+    created:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updated:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
+  manyToMany:
+    categories:
+      targetEntity: App\Initiative\Domain\Category\Category
+      inversedBy: initiatives
+#      TODO MtM in doctrine not eager loaded for some reason
+#      fetch: EAGER
+      joinTable:
+        name: initiative_category
+        joinColumns:
+          initiative_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          category_id:
+            referencedColumnName: id
+      cascade: [ "all" ]
+    participants:
+      targetEntity: App\Identity\Domain\Customer\AbstractCustomer
+      inversedBy: participation
+#      fetch: EAGER
+      joinTable:
+        name: participation
+        joinColumns:
+          initiative_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          customer_id:
+            referencedColumnName: id
+        cascade: [ "all" ]
+#    followers:
+#      targetEntity: App\Identity\Domain\Customer\AbstractCustomer
+#      inversedBy: following
+##      fetch: EAGER
+#      joinTable:
+#        name: following
+#        joinColumns:
+#          initiative_id:
+#            referencedColumnName: id
+#        inverseJoinColumns:
+#          customer_id:
+#            referencedColumnName: id
+#        cascade: [ "all" ]
+    favourited:
+      targetEntity: App\Identity\Domain\Customer\AbstractCustomer
+      mappedBy: favourites
+  manyToOne:
+    customer:
+      targetEntity: App\Identity\Domain\Customer\AbstractCustomer
+      inversedBy: initiatives
+#      fetch: EAGER
+      joinColumn:
+        name: customer_id
+        referencedColumnName: id
+        cascade: [ "all" ]
+        onDelete: CASCADE
+  oneToMany:
+    followers:
+      targetEntity: App\Identity\Domain\Customer\Following
+      mappedBy: initiative
+      orphanRemoval: true
+      cascade: [ "all" ]
+    images:
+      targetEntity: App\Initiative\Domain\Image\Image
+      mappedBy: initiative
+      orphanRemoval: true
+      cascade: [ "all" ]
+    questionnaires:
+      targetEntity: App\Initiative\Domain\Questionnaire\Questionnaire
+      orphanRemoval: true
+      mappedBy: initiative
+      cascade: [ "all" ]
+    comments:
+      targetEntity: App\Initiative\Domain\Comment\Comment
+      mappedBy: initiative
+#      fetch: EAGER
+#      orphanRemoval: true
+      cascade: [ "all" ]
+#      orderBy:
+#        created: DESC

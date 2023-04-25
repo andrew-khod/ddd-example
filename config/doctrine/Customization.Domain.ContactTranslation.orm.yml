@@ -1,0 +1,25 @@
+App\Customization\Domain\ContactTranslation:
+  type: entity
+  table: contact_translation
+  id:
+    id:
+      type: uuid
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    type:
+      type: string
+    value:
+      type: text
+  manyToOne:
+    contact:
+      targetEntity: App\Customization\Domain\Contact
+      inversedBy: translations
+      joinColumn:
+        onDelete: CASCADE
+    language:
+      targetEntity: App\Shared\Domain\Language
+#      onDelete: CASCADE

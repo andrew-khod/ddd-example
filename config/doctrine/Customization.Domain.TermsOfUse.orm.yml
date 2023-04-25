@@ -1,0 +1,26 @@
+App\Customization\Domain\TermsOfUse:
+  type: entity
+  table: terms_of_use
+#todo store Policies in one table
+#  table: policy
+  id:
+    id:
+      type: uuid
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+#    content:
+#      type:
+#        json
+    title:
+      type:
+        string
+    description:
+      type:
+        text
+  manyToOne:
+    language:
+      targetEntity: App\Shared\Domain\Language

@@ -1,0 +1,34 @@
+App\Identity\Domain\Company\Company:
+  type: entity
+  table: company
+  id:
+    id:
+      type: company_id
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    name:
+      type: company_name
+    alias:
+      type: string
+      unique: true
+    url:
+      type: string
+    color:
+      type: string
+    header:
+      type: string
+    logo:
+      type: string
+    logo_second:
+      type: string
+    footer:
+      type: string
+  oneToMany:
+    userCompanies:
+      targetEntity: App\Identity\Domain\UserCompany\UserCompany
+      mappedBy: company
+      cascade: ["all"]

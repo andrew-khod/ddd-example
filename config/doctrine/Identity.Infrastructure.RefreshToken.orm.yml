@@ -1,0 +1,18 @@
+#fixme for some reason default mapping doesn't load from vendor
+App\Identity\Infrastructure\RefreshToken:
+  type: entity
+  table: refresh_tokens
+  repositoryClass: Gesdinet\JWTRefreshTokenBundle\Entity\RefreshTokenRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    refreshToken:
+      type: string
+      column: refresh_token
+    username:
+      type: string
+    valid:
+      type: datetime

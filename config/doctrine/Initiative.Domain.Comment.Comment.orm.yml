@@ -1,0 +1,48 @@
+App\Initiative\Domain\Comment\Comment:
+  type: entity
+  table: comment
+  id:
+    id:
+      type: comment_id
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    comment:
+      type: string
+    # todo use softdeleteable
+    archived_at:
+      type: datetime
+    created:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updated:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
+  manyToOne:
+    initiative:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+      inversedBy: comments
+#      fetch: EAGER
+      joinColumn:
+        name: initiative_id
+        referencedColumnName: id
+        cascade: [ "all" ]
+        onDelete: CASCADE
+    customer:
+      targetEntity: App\Identity\Domain\Customer\AbstractCustomer
+      inversedBy: comments
+#      fetch: EAGER
+      joinColumn:
+        name: customer_id
+        referencedColumnName: id
+        cascade: [ "all" ]
+        onDelete: CASCADE
+#  orderBy:
+#    created: DESC

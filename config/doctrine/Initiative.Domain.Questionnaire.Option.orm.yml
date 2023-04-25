@@ -1,0 +1,15 @@
+App\Initiative\Domain\Questionnaire\Option:
+  type: entity
+  table: questionnaire_option
+  id:
+    id:
+      type: uuid
+      unique: true
+  fields:
+    option:
+      type: text
+      column: '`option`'
+  manyToOne:
+    questionnaire:
+      targetEntity: App\Initiative\Domain\Questionnaire\Questionnaire
+      inversedBy: options

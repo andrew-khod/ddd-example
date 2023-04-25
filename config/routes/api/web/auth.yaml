@@ -1,0 +1,55 @@
+# Authentication: local JWT
+web.identity.authentication.jwt.access_token:
+  path: /identity/authentication/jwt/access-token
+  methods: POST
+web.identity.authentication.jwt.refresh_token:
+  path: /identity/authentication/jwt/refresh-token
+#  controller: gesdinet.jwtrefreshtoken::refresh
+  methods: POST
+
+# Authentication: Google Oauth
+web.identity.authentication.google.verification:
+  path: /identity/authentication/google/verification
+  controller: App\Identity\UI\Web\Customer\Controller\GoogleOauthController::verification
+  methods: POST
+
+# Customer Signup
+web.identity.signup.verification:
+  path: /identity
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::signUp
+  methods: POST
+web.identity.signup.confirmation:
+  path: /identity/activation
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::activateAccount
+  methods: POST
+
+# Password Recovery
+web.identity.recovery.token.verification:
+  path: /identity/recovery/token/verification
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::passwordRecoveryTokenVerification
+  methods: POST
+web.identity.recovery.token.confirmation:
+  path: /identity/recovery/token/confirmation
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::passwordRecoveryTokenConfirmation
+  methods: POST
+
+# Move to User
+web.identity.self:
+  path: /identity/self
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::selfProfile
+  methods: GET
+
+web.identity.self.update:
+  path: /identity/self
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::updateProfile
+  methods: POST
+
+web.identity.self.delete:
+  path: /identity/self
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::deleteCustomer
+  methods: DELETE
+
+web.identity.language:
+  path: /identity/language
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::switchLanguage
+  methods: POST

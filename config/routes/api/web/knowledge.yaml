@@ -1,0 +1,49 @@
+web.knowledge.questions:
+  path: /knowledge/questions
+  controller: App\Customization\UI\Web\KnowledgeController::questions
+  methods: GET
+
+web.knowledge.contacts:
+  path: /knowledge/contacts
+  controller: App\Customization\UI\Web\KnowledgeController::contacts
+  methods: GET
+
+web.knowledge.rules:
+  path: /knowledge/rules
+  controller: App\Customization\UI\Web\KnowledgeController::rules
+  methods: GET
+
+web.knowledge.policies.privacy:
+  path: /knowledge/policies/privacy
+  controller: App\Customization\UI\Web\KnowledgeController::privacyPolicy
+  methods: GET
+
+web.knowledge.policies.cookies:
+  path: /knowledge/policies/cookies
+  controller: App\Customization\UI\Web\KnowledgeController::cookiesPolicy
+  methods: GET
+
+web.knowledge.policies.accessibility:
+  path: /knowledge/policies/accessibility
+  controller: App\Customization\UI\Web\KnowledgeController::accessibilityPolicy
+  methods: GET
+
+web.knowledge.terms:
+  path: /knowledge/terms
+  controller: App\Customization\UI\Web\KnowledgeController::termsOfUse
+  methods: GET
+
+web.knowledge.brand:
+  path: /knowledge/brand
+  controller: App\Customization\UI\Web\KnowledgeController::brand
+  methods: GET
+
+web.knowledge.feedback:
+  path: /knowledge/feedback
+  controller: App\Customization\UI\Web\KnowledgeController::feedback
+  methods: POST
+
+web.knowledge.feedback.accessibility:
+  path: /knowledge/feedback/accessibility
+  controller: App\Customization\UI\Web\KnowledgeController::feedbackAccessibility
+  methods: POST

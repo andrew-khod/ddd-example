@@ -1,0 +1,55 @@
+# Authentication: local JWT
+dashboard.identity.authentication.jwt.access_token:
+  path: /identity/authentication/jwt/access-token
+  methods: POST
+dashboard.identity.authentication.jwt.refresh_token:
+  path: /identity/authentication/jwt/refresh-token
+#  controller: gesdinet.jwtrefreshtoken::refresh
+  methods: POST
+
+dashboard.identity.authentication.vendors.allowed:
+  path: /identity/authentication/vendors/allowed
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\SecurityController::allowedAuthVendors
+  methods: GET
+
+# Authentication: Google Oauth
+dashboard.identity.authentication.google.linkage:
+  path: /identity/authentication/google/linkage
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\GoogleOauthController::linkage
+  methods: POST
+dashboard.identity.authentication.google.verification:
+  path: /identity/authentication/google/verification
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\GoogleOauthController::verification
+  methods: POST
+
+# Authorization
+dashboard.identity.authorization.permissions:
+  path: /identity/authorization/permissions
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\SecurityController::permissions
+  methods: GET
+
+# Password Recovery
+dashboard.identity.recovery.token.verification:
+  path: /identity/recovery/token/verification
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\SecurityController::passwordRecoveryTokenVerification
+  methods: POST
+dashboard.identity.recovery.token.confirmation:
+  path: /identity/recovery/token/confirmation
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\SecurityController::passwordRecoveryTokenConfirmation
+  methods: POST
+
+# User Entity
+dashboard.identity.user:
+  path: /identity/user
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\SecurityController::user
+  methods: GET
+
+dashboard.identity.user.create:
+  path: /identity/user
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\SecurityController::createUser
+  methods: POST
+
+dashboard.identity.user.delete:
+  path: /identity/user/{user}
+  controller: App\Identity\UI\Dashboard\Security\Http\Controller\SecurityController::deleteUser
+  methods: DELETE

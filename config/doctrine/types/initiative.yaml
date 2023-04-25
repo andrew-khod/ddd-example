@@ -1,0 +1,8 @@
+doctrine:
+  dbal:
+    types:
+      initiative_id: App\Initiative\Infrastructure\Initiative\Persistence\Doctrine\InitiativeIdType
+      initiative_category_id: App\Initiative\Infrastructure\Initiative\Persistence\Doctrine\InitiativeCategoryIdType
+      initiative_image_id: App\Initiative\Infrastructure\Image\ImageIdType
+      spatial_point: CrEOF\Spatial\DBAL\Types\Geometry\PointType
+      comment_id: App\Initiative\Infrastructure\Initiative\Persistence\Doctrine\CommentIdType

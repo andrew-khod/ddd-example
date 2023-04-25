@@ -1,0 +1,15 @@
+fos_rest:
+  body_listener:
+    enabled: true
+    throw_exception_on_unsupported_content_type: true
+    decoders:
+      json: fos_rest.decoder.json
+  versioning:
+    enabled: true
+    default_version: v1
+  view:
+    formats:
+      json: true
+  format_listener:
+    rules:
+      - { path: ^/, priorities: [ json ], fallback_format: json }

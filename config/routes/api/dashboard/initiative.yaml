@@ -1,0 +1,79 @@
+#dashboard.initiative.create:
+#  path: /initiatives
+#  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::create
+#  methods: POST
+
+dashboard.initiative.list:
+  path: /initiatives/filtered
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::initiatives
+  methods: POST
+
+dashboard.initiative.statistics:
+  path: /initiatives/statistics
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::statistics
+  methods: GET
+
+##dashboard.initiative.list.filtered:
+##  path: /initiatives/filtered/{filter}
+##  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::initiatives
+##  methods: GET
+
+dashboard.initiative.categories:
+  path: /initiatives/categories
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::categories
+  methods: GET
+
+dashboard.initiative.categories.update:
+  path: /initiatives/categories
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::updateCategories
+  methods: POST
+
+dashboard.initiative.update:
+  path: /initiatives/{initiative}
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::update
+  methods: POST
+#
+#dashboard.initiative.join:
+#  path: /initiatives/joined/{initiative}
+#  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::join
+#  methods: POST
+#
+#dashboard.initiative.quit:
+#  path: /initiatives/joined/{initiative}
+#  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::quit
+#  methods: DELETE
+#
+#dashboard.initiative.comment:
+#  path: /initiatives/{initiative}/comments
+#  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::comment
+#  methods: POST
+
+dashboard.initiative.archive:
+  path: /initiatives/archived/{initiative}
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::archive
+  methods: POST
+
+dashboard.initiative.restore:
+  path: /initiatives/archived/{initiative}
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::restore
+  methods: DELETE
+
+dashboard.initiative.comment.remove:
+  path: /initiatives/comments/{comment}
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::removeComment
+  methods: DELETE
+
+dashboard.initiative.image.remove:
+  path: /initiatives/images/{image}
+  controller: App\Initiative\UI\Dashboard\Initiative\Controller\InitiativeController::removeImage
+  methods: DELETE
+
+#dashboard.initiative.favourite:
+#  path: /initiatives/favourite/{initiative}
+#  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::favourite
+#  methods: POST
+#
+#dashboard.initiative.favourite.remove:
+#  path: /initiatives/favourite/{initiative}
+#  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::removeFavourite
+#  methods: DELETE

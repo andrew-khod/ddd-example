@@ -1,0 +1,67 @@
+No requested categories exist: Det finns inga begärda kategorier
+Invalid field: Ogiltigt fält
+Initiative not exist: Initiativ finns inte
+Comment not exist: Kommentar finns inte
+Customer already joined: Kunden har redan anslutit sig
+Not initiative owner: Inte initiativägare
+Initiative have no associated location: Initiativet har ingen tillhörande plats
+
+Authentication vendor allowed: Autentiseringsleverantör tillåten
+You was banned: Du blev bannlyst
+
+Entity already exist: Entitet finns redan
+
+Account already exists: Kontot finns redan
+
+Company already exist: Företaget finns redan
+Company not found: Företaget hittades inte
+No X-App-Key header nor APP_COMPANY_KEY env provided: Ingen X-App-Key header eller APP_COMPANY_KEY env tillhandahålls
+
+Account deleted: Kontot raderat
+
+Password recovery token sent to the requested email: Lösenordsåterställningstoken skickas till den begärda e-posten
+Password changed: lösenordet ändrat
+Start date is greater than end date: Startdatum är större än slutdatum
+Invalid gender: Ogiltigt kön
+Invalid or expired one time code: Ogiltig eller utgången engångskod
+
+User already exist: Användaren finns redan
+Username already exist: Användarnamnet är upptaget
+User not exist: Användare existerar inte
+User not authenticated: Användaren är inte autentiserad
+Auth vendor not allowed: Auktoriserad leverantör är inte tillåten
+Auth vendor already exist: En auktoriserad leverantör finns redan
+Password recovery token not exist: Lösenordsåterställningstoken finns inte
+Password recovery token: Lösenordsåterställningstoken
+Can't join to expired: Kan inte gå med till utgången
+
+Welcome to Kuntamatch!: Välkommen till Kuntamatch!
+Confirm your email from the link below to get involved with Kuntamatch: Bekräfta din e-post från länken nedan för att bli involverad i Kuntamatch
+Best regards: Vänliga hälsningar
+
+Forgot your password?: Glömt ditt lösenord?
+That's okay, it happens! Click on the link below to reset your password.: Det är okej, det händer! Klicka på länken nedan för att återställa ditt lösenord.
+
+Password change: Lösenordsändring
+Your password was changed successfully!: Ditt lösenord har ändrats!
+
+Language not exists: Språket finns inte
+
+The initiative you are following has changed: Initiativet du följer har förändrats
+Following changes have been made: Följande ändringar har gjorts
+
+Title: Titel
+Description: Beskrivning
+Duration: Datum
+Location: Plats
+Coordinates: Koordinater
+Radius: Radie
+empty: tömma
+
+The initiative you are following has been archived: Initiativet du följer har arkiverats
+Following initiative has been archived: Följande initiativ har arkiverats
+Initiative commented: Initiativ kommenterade
+Author: Författare
+Message: Meddelande
+
+Captcha is not invalid: Captcha är inte ogiltigt

@@ -1,0 +1,9 @@
+App\Shared\Domain\AvailableLanguage:
+  type: entity
+  table: available_language
+  id:
+    id:
+      type: uuid
+  fields:
+    name:
+      type: string

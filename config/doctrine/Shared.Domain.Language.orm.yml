@@ -1,0 +1,25 @@
+App\Shared\Domain\Language:
+  type: entity
+  table: language
+  gedmo:
+    soft_deleteable:
+      field_name: deleted
+      time_aware: true
+  id:
+    id:
+      type: uuid
+  fields:
+    name:
+      type: string
+    deleted:
+      type: datetime
+      nullable: true
+#  manyToOne:
+#    categoryTranslations:
+#      targetEntity: App\Initiative\Domain\Category\Category
+#      inversedBy: translations
+##      joinColumn:
+##        name: initiative_id
+##        referencedColumnName: id
+##        cascade: [ "all" ]
+##        onDelete: CASCADE

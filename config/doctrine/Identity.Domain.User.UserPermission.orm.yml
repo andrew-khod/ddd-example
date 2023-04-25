@@ -1,0 +1,28 @@
+App\Identity\Domain\User\UserPermission:
+  type: entity
+  table: user_permission
+  # todo weird behaviour when remove User->Permissions by criteria, so using primary key instead of composite
+  id:
+    id:
+      type: uuid
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+#    user_id:
+#      associationKey: true
+#    permission_id:
+#      type: permission_id
+#  fields:
+#    permission_id:
+#      type: permission_id
+  manyToOne:
+    user:
+      targetEntity: App\Identity\Domain\User\User
+      inversedBy: permissions
+    permission:
+      targetEntity: App\Identity\Domain\Permission\Permission
+#      inversedBy: userPermission
+    company:
+      targetEntity: App\Identity\Domain\Company\Company

@@ -1,0 +1,5 @@
+doctrine:
+  dbal:
+    types:
+      customer_id: App\Identity\Infrastructure\Customer\Persistence\Doctrine\CustomerIdType
+      username: App\Identity\Infrastructure\Customer\Persistence\Doctrine\CustomerUserNameType

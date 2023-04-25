@@ -1,0 +1,14 @@
+web.notifications.list:
+  path: /notifications
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::notifications
+  methods: GET
+
+web.notifications.read:
+  path: /notifications/read
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::markAllNotificationsAsRead
+  methods: POST
+
+web.notifications.hidden:
+  path: /notifications/hidden
+  controller: App\Identity\UI\Web\Customer\Controller\CustomerController::hideAllNotifications
+  methods: POST

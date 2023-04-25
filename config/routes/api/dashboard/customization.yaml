@@ -1,0 +1,94 @@
+dashboard.customization.questions.list:
+  path: /customization/questions
+  controller: App\Customization\UI\Dashboard\CustomizationController::questions
+  methods: GET
+
+dashboard.customization.questions.update:
+  path: /customization/questions
+  controller: App\Customization\UI\Dashboard\CustomizationController::updateQuestions
+  methods: PATCH
+
+dashboard.customization.contacts.list:
+  path: /customization/contacts
+  controller: App\Customization\UI\Dashboard\CustomizationController::contacts
+  methods: GET
+
+dashboard.customization.contacts.update:
+  path: /customization/contacts
+  controller: App\Customization\UI\Dashboard\CustomizationController::updateContacts
+  methods: PATCH
+
+dashboard.customization.rules.list:
+  path: /customization/rules
+  controller: App\Customization\UI\Dashboard\CustomizationController::rules
+  methods: GET
+
+dashboard.customization.rules.update:
+  path: /customization/rules
+  controller: App\Customization\UI\Dashboard\CustomizationController::updateRules
+  methods: POST
+
+dashboard.customization.privacy.list:
+  path: /customization/policies/privacy
+  controller: App\Customization\UI\Dashboard\CustomizationController::privacyPolicy
+  methods: GET
+
+dashboard.customization.privacy.update:
+  path: /customization/policies/privacy
+  controller: App\Customization\UI\Dashboard\CustomizationController::updatePrivacyPolicy
+  methods: POST
+
+dashboard.customization.cookies.list:
+  path: /customization/policies/cookies
+  controller: App\Customization\UI\Dashboard\CustomizationController::cookiesPolicy
+  methods: GET
+
+dashboard.customization.cookies.update:
+  path: /customization/policies/cookies
+  controller: App\Customization\UI\Dashboard\CustomizationController::updateCookiesPolicy
+  methods: POST
+
+dashboard.customization.accessibility.list:
+  path: /customization/policies/accessibility
+  controller: App\Customization\UI\Dashboard\CustomizationController::accessibilityPolicy
+  methods: GET
+
+dashboard.customization.accessibility.update:
+  path: /customization/policies/accessibility
+  controller: App\Customization\UI\Dashboard\CustomizationController::updateAccessibilityPolicy
+  methods: POST
+
+dashboard.customization.terms.list:
+  path: /customization/terms
+  controller: App\Customization\UI\Dashboard\CustomizationController::termsOfUse
+  methods: GET
+
+dashboard.customization.terms.update:
+  path: /customization/terms
+  controller: App\Customization\UI\Dashboard\CustomizationController::updateTermsOfUse
+  methods: POST
+
+dashboard.customization.brand.list:
+  path: /customization/brand
+  controller: App\Customization\UI\Dashboard\CustomizationController::brandAndStyle
+  methods: GET
+
+dashboard.customization.brand.update:
+  path: /customization/brand
+  controller: App\Customization\UI\Dashboard\CustomizationController::updateBrandAndStyle
+  methods: POST
+
+dashboard.customization.brand.header.update:
+  path: /customization/brand/header
+  controller: App\Customization\UI\Dashboard\CustomizationController::updateBrandAndStyleHeader
+  methods: POST
+
+dashboard.customization.languages:
+  path: /customization/languages
+  controller: App\Customization\UI\Dashboard\CustomizationController::languagesConfiguration
+  methods: GET
+
+dashboard.customization.languages.assign:
+  path: /customization/languages
+  controller: App\Customization\UI\Dashboard\CustomizationController::assignLanguages
+  methods: POST

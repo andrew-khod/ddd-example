@@ -1,0 +1,19 @@
+dashboard.admins.list:
+  path: /admins
+  controller: App\Identity\UI\Dashboard\User\UserController::list
+  methods: GET
+
+dashboard.admins.edit:
+  path: /admins/{admin}
+  controller: App\Identity\UI\Dashboard\User\UserController::edit
+  methods: POST
+
+dashboard.admins.switch_company:
+  path: /admins/active_company/{company}
+  controller: App\Identity\UI\Dashboard\User\UserController::switchCompany
+  methods: POST
+
+dashboard.admins.activations:
+  path: /admins/activations/{user}
+  controller: App\Identity\UI\Dashboard\User\UserController::resendActivation
+  methods: POST

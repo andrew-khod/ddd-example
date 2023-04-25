@@ -1,0 +1,67 @@
+No requested categories exist: No requested categories exist
+Invalid field: Invalid field
+Initiative not exist: Initiative not exist
+Comment not exist: Comment not exist
+Customer already joined: Customer already joined
+Not initiative owner: Not initiative owner
+Initiative have no associated location: Initiative have no associated location
+
+Authentication vendor allowed: Authentication vendor allowed
+You was banned: You was banned
+
+Entity already exist: Entity already exist
+
+Account already exists: Account already exists
+
+Company already exist: Company already exist
+Company not found: Company not found
+No X-App-Key header nor APP_COMPANY_KEY env provided: No X-App-Key header nor APP_COMPANY_KEY env provided
+
+Account deleted: Account deleted
+
+Password recovery token sent to the requested email: Password recovery token sent to the requested email
+Password changed: Password changed
+Start date is greater than end date: Start date is greater than end date
+Invalid gender: Invalid gender
+Invalid or expired one time code: Invalid or expired one time code
+
+User already exist: User already exist
+Username already exist: Username already exist
+User not exist: User not exist
+User not authenticated: User not authenticated
+Auth vendor not allowed: Auth vendor not allowed
+Auth vendor already exist: Auth vendor already exist
+Password recovery token not exist: Password recovery token not exist
+Password recovery token: Password recovery token
+Can't join to expired: Can't join to expired
+
+Welcome to Kuntamatch!: Welcome to Kuntamatch!
+Confirm your email from the link below to get involved with Kuntamatch: Confirm your email from the link below to get involved with Kuntamatch
+Best regards: Best regards
+
+Forgot your password?: Forgot your password?
+That's okay, it happens! Click on the link below to reset your password.: That's okay, it happens! Click on the link below to reset your password.
+
+Password change: Password change
+Your password was changed successfully!: Your password was changed successfully!
+
+Language not exists: Language not exists
+
+The initiative you are following has changed: The initiative you are following has changed
+Following changes have been made: Following changes have been made
+
+Title: Title
+Description: Description
+Duration: Date
+Location: Location
+Coordinates: Coordinates
+Radius: Radius
+empty: empty
+
+The initiative you are following has been archived: The initiative you are following has been archived
+Following initiative has been archived: Following initiative has been archived
+Initiative commented: Initiative commented
+Author: Author
+Message: Message
+
+Captcha is not invalid: Captcha is not invalid

@@ -1,0 +1,33 @@
+# fixme alternative to QuestionTranslation mapping
+App\Initiative\Domain\Category\CategoryTranslation:
+  type: entity
+  table: category_translation
+  id:
+    category:
+      associationKey: true
+    language:
+      associationKey: true
+#    category_id:
+#      type: initiative_category_id
+##      type: initiative_category_id
+#    language_id:
+#      type: uuid
+  fields:
+    name:
+      type: string
+  manyToOne:
+    category:
+      targetEntity: App\Initiative\Domain\Category\Category
+      inversedBy: translations
+#      joinColumn:
+#        name: initiative_id
+#        referencedColumnName: id
+#        cascade: [ "all" ]
+#        onDelete: CASCADE
+    language:
+      targetEntity: App\Shared\Domain\Language
+#      joinTable:
+#        name: user_role
+#      joinColumn:
+#        name: user_id
+#        referencedColumnId: id

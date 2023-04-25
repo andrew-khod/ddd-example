@@ -1,0 +1,26 @@
+App\Initiative\Domain\Event\Event:
+  type: entity
+  table: initiative_event
+  id:
+    id:
+      type: uuid
+  fields:
+    event:
+      type: text
+#      type: json
+      nullable: false
+#    initiative_id:
+#      type: initiative_id
+#      nullable: false
+    created:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+  manyToOne:
+    initiative:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+  oneToMany:
+    readStatus:
+      targetEntity: App\Initiative\Domain\Event\EventReadStatus
+      mappedBy: event

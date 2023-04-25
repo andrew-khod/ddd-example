@@ -1,0 +1,12 @@
+dashboard:
+  resource: 'routes/api/dashboard/*.yaml'
+  prefix: /{version}
+  host: '%common.dashboard_base_url%'
+  requirements:
+    version: v1
+web:
+  resource: 'routes/api/web/*.yaml'
+  prefix: /{version}
+  host: '%common.web_base_url%'
+  requirements:
+    version: v1

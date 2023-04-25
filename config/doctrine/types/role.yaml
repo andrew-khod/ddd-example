@@ -1,0 +1,4 @@
+doctrine:
+  dbal:
+    types:
+      role_id: App\Identity\Infrastructure\Role\Persistence\Doctrine\RoleIdType

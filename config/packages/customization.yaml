@@ -1,0 +1,3 @@
+parameters:
+  customization.header: '%env(CUSTOMIZATION_HEADER_PATH)%'
+  customization.logo: '%env(CUSTOMIZATION_LOGO_PATH)%'

@@ -1,0 +1,5 @@
+doctrine:
+  dbal:
+    types:
+      company_id: App\Identity\Infrastructure\Company\Persistence\Doctrine\CompanyIdType
+      company_name: App\Identity\Infrastructure\Company\Persistence\Doctrine\NameType

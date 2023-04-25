@@ -1,0 +1,5 @@
+parameters:
+  aws.key_id: '%env(AWS_ACCESS_KEY_ID)%'
+  aws.secret_key: '%env(AWS_SECRET_ACCESS_KEY)%'
+  aws.region: '%env(AWS_DEFAULT_REGION)%'
+  aws.bucket: '%env(AWS_BUCKET)%'

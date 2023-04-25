@@ -1,0 +1,93 @@
+App\Identity\Domain\Customer\AbstractCustomer:
+#  type: mappedSuperclass
+  type: entity
+  inheritanceType: SINGLE_TABLE
+  discriminatorColumn:
+    name: discr
+    type: string
+  discriminatorMap:
+    Customer: App\Identity\Domain\Customer\Customer
+    NotActivatedCustomer: App\Identity\Domain\Customer\NotActivatedCustomer
+    DeletedCustomer: App\Identity\Domain\Customer\DeletedCustomer
+    BannedCustomer: App\Identity\Domain\Customer\BannedCustomer
+  table: customer
+  id:
+    id:
+      type: customer_id
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    email:
+      type: email
+      length: 180
+      unique: true
+    password_recovery_token:
+      type: string
+      length: 180
+      nullable: true
+    password:
+      type: password
+      nullable: true
+    username:
+      type: username
+      unique: true
+      nullable: true
+    firstname:
+      type: string
+      nullable: true
+    lastname:
+      type: string
+      nullable: true
+    birthday:
+      # TODO use date type
+      type: datetime
+      nullable: true
+    gender:
+      type: string
+      length: 1
+      nullable: true
+    postal:
+      type: string
+      length: 10
+      nullable: true
+    photo:
+      type: string
+      nullable: true
+    created:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+  # TODO extract fields/relations to respective Customer subtypes
+  oneToMany:
+    initiatives:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+      mappedBy: customer
+    comments:
+      targetEntity: App\Initiative\Domain\Comment\Comment
+      mappedBy: customer
+    following:
+      targetEntity: App\Identity\Domain\Customer\Following
+      mappedBy: customer
+  manyToMany:
+    participation:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+      mappedBy: participants
+#    following:
+#      targetEntity: App\Initiative\Domain\Initiative\Initiative
+#      mappedBy: followers
+    favourites:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+      inversedBy: favourited
+      joinTable:
+        name: favourite
+        joinColumns:
+          initiative_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          customer_id:
+            referencedColumnName: id
+        cascade: [ "all" ]

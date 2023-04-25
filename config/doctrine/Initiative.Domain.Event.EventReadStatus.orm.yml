@@ -1,0 +1,15 @@
+App\Initiative\Domain\Event\EventReadStatus:
+  type: entity
+  table: initiative_event_read_status
+  id:
+    id:
+      type: uuid
+  fields:
+    is_hidden:
+      type: boolean
+      nullable: true
+  manyToOne:
+    event:
+      targetEntity: App\Initiative\Domain\Event\Event
+    customer:
+      targetEntity: App\Identity\Domain\Customer\AbstractCustomer

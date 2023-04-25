@@ -1,0 +1,7 @@
+doctrine:
+  dbal:
+    types:
+      user_id: App\Identity\Infrastructure\User\Persistence\Doctrine\UserIdType
+      email: App\Identity\Infrastructure\User\Persistence\Doctrine\EmailType
+      password: App\Identity\Infrastructure\User\Persistence\Doctrine\PasswordType
+      role_collection: App\Identity\Infrastructure\Role\Persistence\Doctrine\RoleCollectionType

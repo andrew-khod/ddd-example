@@ -1,0 +1,19 @@
+App\Customization\Domain\QuestionTranslation:
+  type: entity
+  table: question_translation
+  id:
+    question:
+      associationKey: true
+    language:
+      associationKey: true
+  fields:
+    title:
+      type: text
+    answer:
+      type: text
+  manyToOne:
+    question:
+      targetEntity: App\Customization\Domain\Question
+      inversedBy: translations
+    language:
+      targetEntity: App\Shared\Domain\Language

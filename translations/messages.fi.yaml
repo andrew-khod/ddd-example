@@ -1,0 +1,67 @@
+No requested categories exist: Pyydettyjä luokkia ei ole
+Invalid field: Virheellinen kenttä
+Initiative not exist: Aloitetta ei ole olemassa
+Comment not exist: Kommenttia ei ole olemassa
+Customer already joined: Asiakas on jo liittynyt
+Not initiative owner: Ei aloitteen omistaja
+Initiative have no associated location: Aloitteella ei ole liitettyä sijaintia
+
+Authentication vendor allowed: Todennustoimittaja sallittu
+You was banned: Sinut bannattiin
+
+Entity already exist: Entiteetti on jo olemassa
+
+Account already exists: Tili on jo olemassa
+
+Company already exist: Yritys on jo olemassa
+Company not found: Yritystä ei löydy
+No X-App-Key header nor APP_COMPANY_KEY env provided: Ei X-App-Key-otsikkoa tai APP_COMPANY_KEY env -toimintoa
+
+Account deleted: Tili poistettu
+
+Password recovery token sent to the requested email: Salasanan palautustunnus lähetettiin pyydettyyn sähköpostiin
+Password changed: Salasana vaihdettu
+Start date is greater than end date: Aloituspäivä on suurempi kuin lopetuspäivä
+Invalid gender: Virheellinen sukupuoli
+Invalid or expired one time code: Virheellinen tai vanhentunut aikakoodi
+
+User already exist: Käyttäjä on jo olemassa
+Username already exist: Käyttäjänimi on jo olemassa
+User not exist: Käyttäjää ei ole olemassa
+User not authenticated: Käyttäjää ei ole todennettu
+Auth vendor not allowed: Todennuspalvelun tarjoajaa ei sallita
+Auth vendor already exist: Todentaja on jo olemassa
+Password recovery token not exist: Salasanan palautustunnusta ei ole olemassa
+Password recovery token: Salasanan palautustunnus
+Can't join to expired: Ei voi liittyä vanhentuneeksi
+
+Welcome to Kuntamatch!: Tervetuloa Kuntamatch palveluun!
+Confirm your email from the link below to get involved with Kuntamatch: Vahvista sähköpostisi alla olevasta linkistä, niin pääset mukaan Kuntamatchin toimintaan
+Best regards: Ystävällisin terveisin
+
+Forgot your password?: Unohditko salasanasi?
+That's okay, it happens! Click on the link below to reset your password.: Ei hätää, sitä sattuu! Klikkaa alla olevaa linkkiä resetoidaksesi salasanasi.
+
+Password change: Salasanan vaihto
+Your password was changed successfully!: Salasanasi on vaihdettu onnistuneesti!
+
+Language not exists: Kieltä ei ole olemassa
+
+The initiative you are following has changed: Seuraamaasi tehtävään on tullut muutoksia
+Following changes have been made: Seuraavat muutokset on tehty
+
+title: Otsikko
+description: Kuvaus
+duration: Päivämäärä
+Location: Sijainti
+Coordinates: Koordinaatit
+Radius: Säde
+empty: tyhjä
+
+The initiative you are following has been archived: Seuraamasi tehtävä on arkistoitu
+Following initiative has been archived: Seuraava tehtävä on arkistoitu
+Initiative commented: Aloite kommentoi
+Author: Tekijä
+Message: Viesti
+
+Captcha is not invalid: Captcha ei ole virheellinen

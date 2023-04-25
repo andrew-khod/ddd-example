@@ -1,0 +1,67 @@
+# TODO use inheritanceType: SINGLE_TABLE for single table sharing with Customer entity
+App\Identity\Domain\Customer\Customer:
+  type: entity
+  repositoryClass: App\Identity\Infrastructure\Customer\Persistence\Doctrine\CustomerIdentityByTenantRepository
+#  table: customer
+#  id:
+#    id:
+#      type: customer_id
+#      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+#  fields:
+#    email:
+#      type: email
+#      length: 180
+#      unique: true
+#    password_recovery_token:
+#      type: string
+#      length: 180
+#      nullable: true
+#    password:
+#      type: password
+#      nullable: true
+#    username:
+#      type: username
+#      unique: true
+#      nullable: true
+#    firstname:
+#      type: string
+#      nullable: true
+#    lastname:
+#      type: string
+#      nullable: true
+#    birthday:
+#      type: datetime
+#      nullable: true
+#    gender:
+#      type: string
+#      length: 1
+#      nullable: true
+#    postal:
+#      type: string
+#      length: 10
+#      nullable: true
+#    photo:
+#      type: string
+#      nullable: true
+#  oneToMany:
+#    initiatives:
+#      targetEntity: App\Initiative\Domain\Initiative\Initiative
+#      mappedBy: customer
+  oneToMany:
+    eventsRead:
+      targetEntity: App\Initiative\Domain\Event\EventReadStatus
+      mappedBy: customer
+#      cascade: [ "all" ]
+  oneToOne:
+    activeLanguage:
+      #      targetEntity: App\Identity\Domain\UserCompany\UserCompany
+      targetEntity: App\Shared\Domain\Language
+      #      cascade: [ "persist" ]
+      #      joinColumns:
+      joinColumn:
+        name: active_language_id
+        referencedColumnName: id

@@ -1,0 +1,23 @@
+App\Initiative\Domain\Image\Image:
+  type: entity
+  table: image
+  id:
+    id:
+      type: initiative_image_id
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    pathname:
+      type: string
+  manyToOne:
+    initiative:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+      inversedBy: images
+      joinColumn:
+        name: initiative_id
+        referencedColumnName: id
+        cascade: [ "all" ]
+        onDelete: CASCADE

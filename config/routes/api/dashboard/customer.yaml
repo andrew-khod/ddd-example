@@ -1,0 +1,20 @@
+# todo think about to extract CustomerManagement (or similar) bounded context
+dashboard.customers.list:
+  path: /customers
+  controller: App\Identity\UI\Dashboard\Customer\CustomerController::list
+  methods: POST
+
+dashboard.customers.ban:
+  path: /customers/banned/{customer}
+  controller: App\Identity\UI\Dashboard\Customer\CustomerController::ban
+  methods: POST
+
+dashboard.customers.unban:
+  path: /customers/banned/{customer}
+  controller: App\Identity\UI\Dashboard\Customer\CustomerController::unban
+  methods: DELETE
+
+dashboard.customers.activations:
+  path: /customers/activations/{customer}
+  controller: App\Identity\UI\Dashboard\Customer\CustomerController::resendActivation
+  methods: POST

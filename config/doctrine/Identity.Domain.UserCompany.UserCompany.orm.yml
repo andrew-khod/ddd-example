@@ -1,0 +1,36 @@
+App\Identity\Domain\UserCompany\UserCompany:
+  type: entity
+  table: user_company
+  id:
+    id:
+      type: uuid
+#    user:
+#      associationKey: true
+#    company:
+#      associationKey: true
+  fields:
+    email:
+      type: email
+      length: 180
+#    is_active_company:
+#      type: boolean
+#      options:
+#        default: false
+  #todo composite uniqueConstraints for user_id/company_id
+  manyToOne:
+    company:
+      targetEntity: App\Identity\Domain\Company\Company
+      inversedBy: userCompanies
+#      fetch: EXTRA_LAZY
+      joinColumn:
+        name: company_id
+        referencedColumnName: id
+        onDelete: CASCADE
+    user:
+      targetEntity: App\Identity\Domain\User\User
+      inversedBy: companies
+#      fetch: EAGER
+#      joinColumn:
+#        name: user_id
+#        referencedColumnName: id
+#        onDelete: CASCADE

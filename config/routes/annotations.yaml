@@ -1,0 +1,8 @@
+controllers:
+#    resource: ../../src/Shared/UI/Http/Controller/
+    resource: ../../src/
+    type: annotation
+
+kernel:
+    resource: ../Kernel.php
+    type: annotation

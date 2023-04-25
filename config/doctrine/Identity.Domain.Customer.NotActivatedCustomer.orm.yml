@@ -1,0 +1,36 @@
+# TODO use inheritanceType: SINGLE_TABLE for single table sharing with Customer entity
+App\Identity\Domain\Customer\NotActivatedCustomer:
+  type: entity
+#  inheritanceType: SINGLE_TABLE
+#  discriminatorColumn:
+#    name: discr
+#    type: string
+#  discriminatorMap:
+#    Customer: App\Identity\Domain\Customer\Customer
+#    NotActivatedCustomer: App\Identity\Domain\Customer\NotActivatedCustomer
+#    DeletedCustomer: App\Identity\Domain\Customer\DeletedCustomer
+  repositoryClass: App\Identity\Infrastructure\Customer\Persistence\Doctrine\NotActivatedCustomerIdentityByTenantRepository
+#  table: customer
+#  id:
+#    id:
+#      type: customer_id
+#      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+#    email:
+#      type: email
+#      length: 180
+#      unique: true
+#    password:
+#      type: password
+#      nullable: true
+#    username:
+#      type: username
+#      unique: true
+#      nullable: true
+    activation_token:
+      type: string
+      nullable: true

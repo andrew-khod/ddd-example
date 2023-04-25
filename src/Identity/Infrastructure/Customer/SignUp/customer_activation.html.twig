@@ -1,0 +1,7 @@
+<h3>{% trans into language %}Confirm your email from the link below to get involved with Kuntamatch{% endtrans %}.</h3>
+
+<a href="{{ url }}/{{ language ? language ~ '/' : '' }}account/activate/{{ customer.token }}">
+    {{ url }}/{{ language ? language ~ '/' : '' }}account/activate/{{ customer.token }}
+</a>
+
+<p>{% trans into language %}Best regards{% endtrans %}</p>

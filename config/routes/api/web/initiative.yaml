@@ -1,0 +1,87 @@
+web.initiative.create:
+  path: /initiatives
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::create
+  methods: POST
+
+web.initiative:
+  path: /initiatives/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::initiative
+  methods: GET
+  requirements:
+    initiative: '[a-fA-F0-9\-]{36}'
+#    initiative: uuid
+
+web.initiative.list:
+  path: /initiatives/filtered
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::initiatives
+  methods: POST
+
+web.initiative.map.list:
+  path: /initiatives/filtered/on-map
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::initiativesOnMap
+  methods: POST
+
+#web.initiative.list.filtered:
+#  path: /initiatives/filtered/{filter}
+#  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::initiatives
+#  methods: GET
+
+web.initiative.categories:
+  path: /initiatives/categories
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::categories
+  methods: GET
+
+web.initiative.update:
+  path: /initiatives/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::update
+  methods: POST
+
+web.initiative.join:
+  path: /initiatives/joined/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::join
+  methods: POST
+
+web.initiative.follow:
+  path: /initiatives/followed/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::follow
+  methods: POST
+
+web.initiative.unfollow:
+  path: /initiatives/followed/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::unfollow
+  methods: DELETE
+
+web.initiative.quit:
+  path: /initiatives/joined/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::quit
+  methods: DELETE
+
+web.initiative.comment:
+  path: /initiatives/{initiative}/comments
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::comment
+  methods: POST
+
+web.initiative.comment.report:
+  path: /initiatives/comments/{comment}/reports
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::reportComment
+  methods: POST
+
+web.initiative.archive:
+  path: /initiatives/archived/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::archive
+  methods: POST
+
+web.initiative.favourite:
+  path: /initiatives/favourite/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::favourite
+  methods: POST
+
+web.initiative.favourite.remove:
+  path: /initiatives/favourite/{initiative}
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::removeFavourite
+  methods: DELETE
+
+web.initiative.questionnaires.answer:
+  path: /initiatives/{initiative}/questionnaires/answers
+  controller: App\Initiative\UI\Web\Initiative\Controller\InitiativeController::answerQuestionnaires
+  methods: POST

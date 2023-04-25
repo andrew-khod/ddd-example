@@ -1,0 +1,10 @@
+App\Identity\Domain\AuthVendor\AuthVendor:
+  type: entity
+  table: auth_vendor
+  id:
+    user_id:
+      type: user_id
+    vendor_user_id:
+      type: string
+    vendor_type:
+      type: string

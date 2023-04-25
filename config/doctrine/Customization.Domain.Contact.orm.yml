@@ -1,0 +1,34 @@
+App\Customization\Domain\Contact:
+  type: entity
+  table: contact
+#  gedmo:
+#    soft_deleteable:
+#      field_name: deleted
+#      time_aware: true
+  id:
+    id:
+      type: uuid
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    orderIndex:
+      type:
+        smallint
+      unique: true
+    created:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    deleted:
+      type: datetime
+      nullable: true
+  oneToMany:
+    translations:
+      targetEntity: App\Customization\Domain\ContactTranslation
+      mappedBy: contact
+      cascade: [ "all" ]
+#      onDelete: CASCADE

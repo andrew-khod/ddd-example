@@ -1,0 +1,98 @@
+#todo implement reflection method accessor following Workflow\MarkingStoreInterface
+framework:
+    workflows:
+        # TODO for Customer (Active, NotActivated, Deleted)
+        initiative:
+            type: state_machine
+#            type: workflow
+            marking_store:
+                type: 'method'
+                property: 'status'
+            supports:
+                - App\Initiative\Domain\Initiative\Initiative
+            initial_marking: published
+            places:
+                - published
+                - expired
+                - archived
+                - deleted
+            transitions:
+#                update:
+#                    from: published
+#                    to: [expired, archived]
+#                expire:
+#                    from: [ published, archived, deleted ]
+#                    to: [ expired ]
+#                archive:
+#                    from: [ published ]
+#                    to: [ archived ]
+#                republish:
+#                    from: [ expired, archived ]
+#                    to: [ published ]
+
+# TODO for workflow type
+#                deletePublished:
+#                    from: published
+#                    to: deleted
+#                deleteExpired:
+#                    from: expired
+#                    to: deleted
+#                deleteArchived:
+#                    from: archived
+#                    to: deleted
+#                expirePublished:
+#                    from: published
+#                    to: expired
+#                expireArchived:
+#                    from: archived
+#                    to: expired
+#                expireDeleted:
+#                    from: deleted
+#                    to: expired
+#                archive:
+#                    from: published
+#                    to: archived
+#                republishExpired:
+#                    from: expired
+#                    to: published
+#                republishArchived:
+#                    from: archived
+#                    to: published
+
+#                delete:
+#                    from: [published, expired, archived]
+#                    to: [deleted]
+#                expire:
+#                    from: [published, archived, deleted ]
+#                    to: [ expired ]
+#                archive:
+#                    from: [published]
+#                    to: [ archived ]
+#                republish:
+#                    from: [ expired, archived ]
+#                    to: [ published ]
+
+
+# TODO for state_machine type
+#                delete:
+#                    from: [ published, expired, archived ]
+#                    to: deleted
+#                expire:
+#                    from: [published, archived]
+#                    to:   expired
+#                archive:
+#                    from: published
+#                    to:   archived
+#                republish:
+#                    from: [expired, archived]
+#                    to: published
+
+                delete:
+                    from: [ published, archived ]
+                    to: deleted
+                archive:
+                    from: published
+                    to:   archived
+                republish:
+                    from: archived
+                    to: published

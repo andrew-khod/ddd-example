@@ -1,0 +1,83 @@
+App\Identity\Domain\User\User:
+  type: entity
+  table: user
+  repositoryClass: App\Identity\Infrastructure\User\Persistence\Doctrine\UserIdentityByTenantRepository
+  gedmo:
+    soft_deleteable:
+      field_name: deleted
+      time_aware: true
+  id:
+    id:
+      type: user_id
+      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+    email:
+      type: email
+      length: 180
+      unique: true
+    username:
+      type: string
+      length: 255
+    password:
+      type: password
+    is_superadmin:
+      type: boolean
+    created:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    deleted:
+      type: datetime
+      nullable: true
+  oneToMany:
+    roles:
+      targetEntity: App\Identity\Domain\User\UserRole
+      mappedBy: user
+      joinTable:
+        name: user_role
+#      cascade: [ "all" ]
+    permissions:
+      targetEntity: App\Identity\Domain\User\UserPermission
+      orphanRemoval: true
+      mappedBy: user
+      cascade: [ "all" ]
+    companies:
+      targetEntity: App\Identity\Domain\UserCompany\UserCompany
+#      orphanRemoval: true
+#      fetch: EAGER
+      mappedBy: user
+      joinTable:
+        name: user_company
+  oneToOne:
+    activeCompany:
+#      targetEntity: App\Identity\Domain\UserCompany\UserCompany
+      targetEntity: App\Identity\Domain\Company\Company
+#      cascade: [ "persist" ]
+#      joinColumns:
+      joinColumn:
+        name: active_company_id
+        referencedColumnName: id
+#  manyToMany:
+#    companies:
+#      targetEntity: App\Identity\Domain\Company\Company
+#      inversedBy: users
+#      #      fetch: EAGER
+#      joinTable:
+#        name: user_company
+#        joinColumns:
+#          user_id:
+#            referencedColumnName: id
+#        inverseJoinColumns:
+#          company_id:
+#            referencedColumnName: id
+#        cascade: [ "all" ]
+#    companies:
+#      targetEntity: App\Identity\Domain\Company\Company
+#      joinTable:
+#        name: user_company
+#      cascade: [ "all" ]

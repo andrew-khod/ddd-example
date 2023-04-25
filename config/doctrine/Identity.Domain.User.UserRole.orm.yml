@@ -1,0 +1,14 @@
+App\Identity\Domain\User\UserRole:
+  type: entity
+  table: user_role
+  id:
+    role_id:
+      type: role_id
+  manyToOne:
+    user:
+      targetEntity: App\Identity\Domain\User\User
+      joinTable:
+        name: user_role
+      joinColumn:
+        name: user_id
+        referencedColumnId: id

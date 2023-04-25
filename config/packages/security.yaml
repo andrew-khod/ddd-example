@@ -1,0 +1,176 @@
+security:
+    enable_authenticator_manager: true
+    encoders:
+        App\Identity\Domain\User\User:
+            algorithm: auto
+        App\Identity\Domain\Customer\Customer:
+            algorithm: auto
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        dashboard_customer:
+            entity:
+                class: App\Identity\Domain\User\User
+                property: email
+        web_customer:
+            entity:
+                class: App\Identity\Domain\Customer\Customer
+                property: email
+
+    firewalls:
+        # COMMON
+        auth.google:
+            pattern: /identity/authentication/google/verification$
+            methods: POST
+#            anonymous: true
+        password.reset:
+            pattern: /identity/recovery/token/(verification|confirmation)$
+            methods: POST
+#            anonymous: true
+
+        # DASHBOARD APP
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+#            host: '^%common.dashboard_base_url%$'
+#            anonymous: true
+        api.doc:
+            pattern: ^/doc
+#            pattern: /doc(.json)?$
+#            host: '^%common.dashboard_base_url%$'
+#            anonymous: true
+        dashboard.auth.jwt:
+            pattern: /identity/authentication/jwt/
+            host: '^%common.dashboard_base_url%$'
+#            anonymous: true
+            json_login:
+                check_path: dashboard.identity.authentication.jwt.access_token
+                provider: dashboard_customer
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            refresh_jwt:
+                check_path: dashboard.identity.authentication.jwt.refresh_token
+                provider: dashboard_customer
+        dashboard.main:
+            #            pattern: ^/
+            host: '^%common.dashboard_base_url%$'
+            security: true
+            stateless: true
+            guard:
+                provider: dashboard_customer
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+        # WEB APP
+#        api2:
+##            pattern: /identity/authentication/jwt/refresh-token
+#            host: '^%common.web_base_url%$'
+###            anonymous: true
+#            stateless: true
+#            provider: web_customer
+#            guard:
+#                provider: web_customer
+#                authenticators:
+#                    - lexik_jwt_authentication.jwt_token_authenticator
+
+        web.auth.jwt:
+            pattern: /identity/authentication/jwt/
+            host: '^%common.web_base_url%$'
+#            anonymous: true
+            json_login:
+                check_path: web.identity.authentication.jwt.access_token
+                provider: web_customer
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            refresh_jwt:
+                check_path: web.identity.authentication.jwt.refresh_token
+                provider: web_customer
+        web.signup:
+            pattern: /identity(/activation)?$
+            host: '^%common.web_base_url%$'
+#            anonymous: true
+        web.knowledgebase:
+            pattern: /knowledge
+            host: '^%common.web_base_url%$'
+            guard:
+                provider: web_customer
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+#            anonymous: true
+        web.initiative:
+            pattern: /initiatives/[a-fA-F0-9\-]{36}
+            host: '^%common.web_base_url%$'
+            methods: GET
+            guard:
+                provider: web_customer
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+#            anonymous: true
+        web.initiatives.categories:
+            pattern: /initiatives/categories
+            host: '^%common.web_base_url%$'
+            guard:
+                provider: web_customer
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+#            anonymous: true
+        web.initiatives.filtered:
+            pattern: /initiatives/filtered
+            host: '^%common.web_base_url%$'
+            methods: POST
+            guard:
+                provider: web_customer
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+#            anonymous: true
+#        web.initiatives:
+#            pattern: /initiatives
+#            host: '^%common.web_base_url%$'
+#            methods: GET
+#            security: false
+##            anonymous: true
+#        web.initiatives.comments.report:
+#            pattern: /initiatives/comments/.*/reports
+#            host: '^%common.web_base_url%$'
+#            methods: POST
+#            guard:
+#                provider: web_customer
+#                authenticators:
+#                    - lexik_jwt_authentication.jwt_token_authenticator
+##            anonymous: true
+        web.main:
+#            pattern: ^/
+            host: '^%common.web_base_url%$'
+            security: true
+            stateless: true
+            guard:
+                provider: web_customer
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+            #            lazy: true
+            #            provider: app_user_provider
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+#     - { host: '^%common.dashboard_base_url%$', path: /admins/(.+)$, methods: [POST], allow_if: 'user.isSuperAdmin()' }
+     - { host: '^%common.dashboard_base_url%$', path: /initiatives/, roles: 'initiative:list', allow_if: 'user.isSuperAdmin()' }
+#     - { host: '^%common.dashboard_base_url%$', path: /initiatives/filtered$, roles: 'initiative:list' }
+     - { host: '^%common.dashboard_base_url%$', path: /admins(?!/active_company), roles: 'admin:list', allow_if: 'user.isSuperAdmin()' }
+     - { host: '^%common.dashboard_base_url%$', path: /identity/user$, methods: [POST], roles: 'admin:add', allow_if: 'user.isSuperAdmin()' }
+     - { host: '^%common.dashboard_base_url%$', path: /customers, roles: 'customer:*', allow_if: 'user.isSuperAdmin()' }
+     - { host: '^%common.dashboard_base_url%$', path: /customers/activations, roles: 'customer:*', allow_if: 'user.isSuperAdmin()' }
+     - { host: '^%common.dashboard_base_url%$', path: /customization, roles: 'customization:*', allow_if: 'user.isSuperAdmin()' }
+#     - { host: '^%common.dashboard_base_url%$', path: /identity/ }
+#     - { host: '^%common.dashboard_base_url%$', path: /(?!identity), allow_if: 'is_authenticated() and user.isSuperAdmin()' }
+#     - { host: '^%common.dashboard_base_url%$', path: /, allow_if: 'is_authenticated() and user.isSuperAdmin()' }
+#     - { host: '^%common.dashboard_base_url%$', path: /, allow_if: '!is_authenticated() or (is_authenticated() and user.isSuperAdmin()' }
+
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }

@@ -1,0 +1,151 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+  #  env(DATABASE_URL): ''
+  #  env(DATABASE_URL_FILIX): ''
+  #  env(DATABASE_URL_MY_COMPANY): ''
+  common.dashboard_base_url: '%env(resolve:DASHBOARD_BASE_URL)%'
+  common.dashboard_ui_url: '%env(resolve:DASHBOARD_UI_URL)%'
+  common.web_base_url: '%env(resolve:WEB_BASE_URL)%'
+  common.feedback_api_url: '%env(resolve:FEEDBACK_API_URL)%'
+  common.feedback_accessibility_api_url: '%env(resolve:FEEDBACK_ACCESSIBILITY_API_URL)%'
+#  common.google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    bind:
+      $initiativeImagesPath: '%initiative.images_path%'
+      $customerPhotoPath: '%identity.customer.photo%'
+      $headerImagePath: '%customization.header%'
+      $logoImagePath: '%customization.logo%'
+      $kernelProjectDir: '%kernel.project_dir%'
+      $projectPublicDir: '%common.public_path%'
+      $awsS3Bucket: '%aws.bucket%'
+      $dashboardUIUrl: '%common.dashboard_ui_url%'
+      $feedbackApiUrl: '%common.feedback_api_url%'
+      $feedbackAccessibilityApiUrl: '%common.feedback_accessibility_api_url%'
+
+  gedmo.listener.timestampable:
+    class: Gedmo\Timestampable\TimestampableListener
+    tags:
+      - { name: doctrine.event_subscriber }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      #      - '../src/Entity/'
+      #      - '../src/Shared/Infrastructure/Kernel.php'
+      - '../src/Tests/'
+
+  # controllers are imported separately to make sure services can be injected
+  # as action arguments even if you don't extend any base controller class
+#  App\Shared\UI\Http\Controller\:
+#    resource: '../src/Shared/UI/Http/Controller/'
+#    tags: [ 'controller.service_arguments' ]
+
+  Doctrine\Migrations\Configuration\Configuration: '@doctrine.migrations.configuration'
+
+  App\Shared\UI\Http\Request\LocaleListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.controller, priority: 100 }
+
+  '@security.access.role_hierarchy_voter': '@App\Shared\Infrastructure\RoleHierarchyVoter'
+
+  # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
+  App\Shared\Application\BaseActiveTenant: '@App\Identity\Infrastructure\Company\ActiveTenant'
+#  App\Identity\Infrastructure\Company\SwitchableActiveTenant:
+#    shared: false
+#  App\Identity\Infrastructure\Company\ActiveTenant:
+#    shared: false
+#  App\Shared\Infrastructure\Doctrine\Query\SwitchableTenantBaseQuery:
+#    shared: false
+#  App\Shared\Infrastructure\Doctrine\Query\BaseQuery:
+#    shared: false
+
+  App\Identity\Infrastructure\User\Security\GoogleAuth:
+    arguments:
+      $clientId: '%identity.google_client_id%'
+      $clientSecret: '%identity.google_client_secret%'
+      $clientRedirectUri: '%identity.google_client_redirect_uri%'
+
+  App\Identity\Application\Customer\UseCase\CreateCustomer\CreateCustomerHandler:
+    public: true
+
+  # todo refactor below
+  App\Shared\Application\ImageManager $customerPhotoManager: '@App\Identity\Infrastructure\Customer\Photo\PhotoS3Manager'
+  App\Shared\Application\ImageManager $initiativeImageManager: '@App\Initiative\Infrastructure\Image\ImageS3Manager'
+  App\Shared\Application\ImageManager $headerImageManager: '@App\Customization\Infrastructure\HeaderS3Manager'
+  App\Shared\Application\ImageManager $logoImageManager: '@App\Customization\Infrastructure\LogoS3Manager'
+#  App\Shared\Application\ImageManager $initiativeImageManager: '@App\Initiative\Infrastructure\Image\ImageManager'
+#  App\Shared\Application\ImageManager $customerPhotoManager: '@App\Identity\Infrastructure\Customer\Photo\PhotoManager'
+
+#  App\Customization\Application\PolicyEntityManager:
+#    arguments:
+#      $class: '@=container'
+
+#  App\Shared\Infrastructure\Doctrine\MigrationDependencyFactory:
+#    public: true
+#    factory: [App\Shared\Infrastructure\Doctrine\MigrationDependencyFactory, fromEntityManager]
+#    arguments:
+#      $configurationLoader: '@doctrine.migrations.configuration_loader'
+#      $emLoader: '@doctrine.migrations.em_loader'
+
+  App\Identity\UI\Dashboard\Company\Cli\Command\MigrateCommand:
+#    decorates: 'doctrine_migrations.migrate_command'
+    arguments:
+##      $dependencyFactory: '@App\Shared\Infrastructure\Doctrine\MigrationDependencyFactory'
+      $dependencyFactory: '@doctrine.migrations.dependency_factory'
+
+
+  App\Identity\Application\User\AuthenticatedCustomer:
+    public: true
+    class: App\Identity\Infrastructure\User\Security\AuthenticatedCustomer
+
+  App\Identity\Application\User\AuthenticatedUser:
+    public: true
+    class: App\Identity\Infrastructure\User\Security\AuthenticatedUser
+
+  Aws\S3\S3Client:
+    arguments:
+      - version: 'latest'
+        region: '%aws.region%'
+        credentials:
+          key: '%aws.key_id%'
+          secret: '%aws.secret_key%'
+
+  GuzzleHttp\Client:
+    public: true
+
+  App\Customization\Application\UseCase\Web\CreateFeedback\Feedback $feedback: '@App\Customization\Infrastructure\Feedback'
+  App\Customization\Application\UseCase\Web\CreateFeedback\Feedback $accessibilityFeedback: '@App\Customization\Infrastructure\AccessibilityFeedback'
+
+#  App\Shared\UI\Http\Request\BaseRequest:
+#    public: true
+#
+#  Symfony\Component\HttpFoundation\Request:
+#    public: true
+#
+#  App\Customization\UI\Dashboard\UpdateRulesRequest:
+#    public: true
+  App\Shared\Infrastructure\Doctrine\Query\AssignedToCompanyLanguagesQuery:
+    public: true
+    # todo make shared=false for all Query objects
+#    shared: false
+#  Doctrine\ORM\EntityManager:
+#    public: true
+#    shared: false
+
+  App\Identity\Infrastructure\User\Security\AuthenticatedCustomer:
+    public: true

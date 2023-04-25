@@ -1,0 +1,10 @@
+<h3>{% trans into language %}Initiative commented{% endtrans %}:</h3>
+
+<p><b>{% trans into language %}Author{% endtrans %}:</b> {{ comment.author.username }}</p>
+<p><b>{% trans into language %}Message{% endtrans %}:</b> {{ comment }}</p>
+
+<p>
+    <a href="{{ url }}/initiative/{{ initiative }}" target="_blank">{{ url }}/initiative/{{ initiative }}</a>
+</p>
+
+<p>{% trans into language %}Best regards{% endtrans %}</p>

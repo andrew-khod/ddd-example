@@ -1,0 +1,2 @@
+parameters:
+  initiative.images_path: '%env(INITIATIVE_IMAGES_PATH)%'

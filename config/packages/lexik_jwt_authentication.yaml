@@ -1,0 +1,17 @@
+lexik_jwt_authentication:
+    secret_key: '%env(resolve:JWT_SECRET_KEY)%'
+    public_key: '%env(resolve:JWT_PUBLIC_KEY)%'
+    pass_phrase: '%env(JWT_PASSPHRASE)%'
+    token_ttl: 3600
+gesdinet_jwt_refresh_token:
+    ttl: 7200
+    refresh_token_class: App\Identity\Infrastructure\RefreshToken
+#    doctrine_mappings: true
+#    user_provider: security.user.provider.concrete.dashboard_customer
+services:
+    acme_api.event.jwt_created_listener:
+        class: App\Shared\Infrastructure\JWTCreatedListener
+        arguments: ['@App\Identity\Infrastructure\User\Persistence\Doctrine\UserIdentityByTenantRepository']
+#        arguments: ['@App\Identity\Application\User\Query\UserByCriteriaQuery']
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }

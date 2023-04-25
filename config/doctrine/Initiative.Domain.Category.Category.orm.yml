@@ -1,0 +1,23 @@
+App\Initiative\Domain\Category\Category:
+  type: entity
+  table: category
+  id:
+    id:
+      type: initiative_category_id
+#      unique: true
+#      generator:
+#        strategy: CUSTOM
+#      customIdGenerator:
+#        class: Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator
+  fields:
+#    name:
+#      type: string
+  manyToMany:
+    initiatives:
+      targetEntity: App\Initiative\Domain\Initiative\Initiative
+      mappedBy: categories
+  oneToMany:
+    translations:
+      targetEntity: App\Initiative\Domain\Category\CategoryTranslation
+      mappedBy: category
+      cascade: [ "all" ]
